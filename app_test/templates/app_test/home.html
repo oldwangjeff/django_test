@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}测试{% endblock %} - 哈哈</title>
+</head>
+<body>
+
+{% include 'app_test/nav.html' %}
+
+{% block content %}
+<div>
+    这里是默认内容, {{string}}<br/>
+    {% for i in TutorialList %}
+    {{i}}<br/>
+    {% endfor %}
+    站点:{{info_dict.site}} 内容:{{info_dict.content}}<br/>
+    {% for i in List%}
+    {{i}} {{forloop.counter0}} {{forloop.counter}} {% if not forloop.last %},{% endif %}
+    {% endfor %}<br/>
+    <ul>
+    {% for athlete in athlete_list %}
+        <li>{{ athlete.name }}</li>
+    {% empty %}
+        <li>抱歉，列表为空</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+<a href="{% url 'add2' 4 5 %}">计算 4+5</a><br>
+<!--<a href="/add/4/5/">计算 4+5</a>-->
+{% url 'add3' 3 4 as the_url %}<br>
+<a href="{{ the_url }}">链接到:{{ the_url }}</a><br>
+{{ request.user }}<br>
+{{ request.path }}<br>
+{{ request.GET.urlencode }}<br>
+<a href="http://127.0.0.1:8000{{ request.path }}add/{{ request.GET.urlencode }}">当前网址加参数 delete</a>
+
+{% include 'app_test/bottom.html' %}
+
+{% include 'app_test/tongji.html' %}
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
